@@ -181,6 +181,10 @@ abstract class AbstractGettextMojo extends AbstractMojo {
             getLog().debug("Create new default-header...");
             header = HeaderUtil.generateDefaultHeader();
         }
+        if(header.getMsgstr()==null) {
+            getLog().warn("Empty/invalid header-message within bundle, create new default-header!");
+            header = HeaderUtil.generateDefaultHeader();
+        }
         HeaderFields fields = HeaderFields.wrap(header);
 
         if (StringUtils.isNotEmpty(msgidBugsAddress)) {
